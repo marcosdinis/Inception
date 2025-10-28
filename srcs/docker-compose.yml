@@ -4,5 +4,15 @@ services:
 			context: ./requirements/nginx
 			args:
 				DOMAIN_NAME: ${DOMAIN_NAME}
+		networks:
+			- inception
 		ports:
 			- 443:443
+
+networks:
+	inception:
+		driver: bridge
+
+volumes:
+	db-datas:
+		driver: local
