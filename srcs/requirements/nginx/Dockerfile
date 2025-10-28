@@ -1,4 +1,5 @@
 FROM debian:12
+ARG DOMAIN_NAME
 RUN apt update -y && apt install nginx openssl && rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /etc/nginx/ssl
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
