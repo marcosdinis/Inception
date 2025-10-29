@@ -1,19 +1,18 @@
 services:
-	nginx:
-		build: 
-			context: ./requirements/nginx
-			args:
-				DOMAIN_NAME: ${DOMAIN_NAME}
-		image: nginx
-		networks:
-			- inception
-		ports:
-			- 443:443
-
+ nginx:
+  build:
+   context: ./requirements/nginx
+   args:
+    DOMAIN_NAME: ${DOMAIN_NAME}
+  image: nginx
+  container_name: nginx
+  networks:
+   - inception
+  ports:
+   - 443:443
 networks:
-	inception:
-		driver: bridge
-
+ inception:
+  driver: bridge
 volumes:
-	db-datas:
-		driver: local
+ db-data:
+  driver: local
