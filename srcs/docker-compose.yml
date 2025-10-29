@@ -4,6 +4,7 @@ services:
 			context: ./requirements/nginx
 			args:
 				DOMAIN_NAME: ${DOMAIN_NAME}
+		image: nginx
 		networks:
 			- inception
 		ports:
