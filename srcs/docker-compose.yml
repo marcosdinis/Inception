@@ -14,5 +14,5 @@ networks:
  inception:
   driver: bridge
 volumes:
- db-data:
+ mariadb-data:
   driver: local
