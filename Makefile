@@ -1,8 +1,8 @@
-DATA_PATH = /home/$(USER)/data
+DATA_PATH = /home/itsmarcosdinis/data
 
 all:
 	@mkdir -p $(DATA_PATH)/wordpress $(DATA_PATH)/mariadb
-	@docker compose -f srcs/docker-compose.yml up --build-d
+	@docker compose -f srcs/docker-compose.yml up --build -d
 
 down:
 	@docker compose -f srcs/docker-compose.yml down
