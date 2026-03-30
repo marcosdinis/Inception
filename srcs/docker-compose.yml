@@ -15,6 +15,22 @@ services:
       - inception_net
     restart: always
 
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    image: wordpress
+    env_file: .env
+    secrets:
+      - db_password
+      - credentials
+    volumes:
+      - wordpress_files:/var/www/html
+    networks:
+      - inception_net
+    depends_on:
+      - mariadb
+    restart: always
+
 volumes:
   mariadb_data:
     driver: local
@@ -38,3 +54,5 @@ secrets:
     file: ../secrets/db_password.txt
   db_root_password:
     file: ../secrets/db_root_password.txt
+  credentials:
+    file: ../secrets/credentials.txt
