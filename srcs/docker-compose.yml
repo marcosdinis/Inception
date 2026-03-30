@@ -23,6 +23,7 @@ services:
     secrets:
       - db_password
       - credentials
+      - wp_user_password
     volumes:
       - wordpress_files:/var/www/html
     networks:
