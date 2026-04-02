@@ -13,7 +13,7 @@ services:
       - mariadb_data:/var/lib/mysql
     networks:
       - inception_net
-    restart: always
+    restart: on-failure
 
   wordpress:
     build: ./requirements/wordpress
