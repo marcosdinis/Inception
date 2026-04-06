@@ -5,17 +5,28 @@ MYSQL_ROOT_PASSWORD=$(cat /run/secrets/db_root_password)
 MYSQL_PASSWORD=$(cat /run/secrets/db_password)
 
 if [ ! -d "/var/lib/mysql/mysql" ]; then
-
     mysql_install_db --user=mysql --datadir=/var/lib/mysql > /dev/null
+fi
 
-    mysqld_safe --nowatch &
-    MYSQL_PID=$!
+mysqld_safe --nowatch &
+MYSQL_PID=$!
 
-    until mysqladmin ping --silent; do
-        sleep 1
-    done
+until mysqladmin ping --silent; do
+    sleep 1
+done
 
-    mysql -u root << EOF
+mysql_exec() {
+    if mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "SELECT 1;" > /dev/null 2>&1; then
+        mysql -u root -p"${MYSQL_ROOT_PASSWORD}" "$@"
+    elif mysql -u root -e "SELECT 1;" > /dev/null 2>&1; then
+        mysql -u root "$@"
+    else
+        echo "Nao foi possivel autenticar como root no MariaDB." >&2
+        return 1
+    fi
+}
+
+mysql_exec << EOF
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
 DELETE FROM mysql.user WHERE User='';
 DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
@@ -27,9 +38,7 @@ GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO '${MYSQL_USER}'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-    mysqladmin -u root -p"${MYSQL_ROOT_PASSWORD}" shutdown
-    wait $MYSQL_PID
-
-fi
+mysqladmin -u root -p"${MYSQL_ROOT_PASSWORD}" shutdown
+wait $MYSQL_PID || true
 
 exec mysqld_safe
