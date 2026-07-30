@@ -85,16 +85,16 @@ Passwords must not contain single quotes — they are passed directly to MariaDB
 `srcs/.env` contains all non-sensitive configuration. Review and adjust if needed:
 
 ```env
-DOMAIN_NAME=mdiniz.42.fr
+DOMAIN_NAME=marcos.42.fr
 
 MYSQL_DATABASE=wordpress
 MYSQL_USER=marcos
 
 WP_TITLE=Inception
-WP_ADMIN_USER=mdiniz
-WP_ADMIN_EMAIL=mdiniz@42.fr
-WP_USER=diniz
-WP_USER_EMAIL=diniz@42.fr
+WP_ADMIN_USER=marcos
+WP_ADMIN_EMAIL=marcos@42.fr
+WP_USER=emanuel
+WP_USER_EMAIL=emanuel@42.fr
 ```
 
 `WP_ADMIN_USER` must not contain `admin` or `administrator` in any form — this is a hard requirement of the project evaluation.
@@ -104,7 +104,7 @@ WP_USER_EMAIL=diniz@42.fr
 Add the following line to `/etc/hosts` on your machine:
 
 ```sh
-echo "127.0.0.1    mdiniz.42.fr" | sudo tee -a /etc/hosts
+echo "127.0.0.1    marcos.42.fr" | sudo tee -a /etc/hosts
 ```
 
 ### 5. Build and launch
@@ -194,8 +194,8 @@ The project uses two named Docker volumes:
 
 | Volume | Purpose | Host path |
 |--------|---------|-----------|
-| `srcs_mariadb_data` | MariaDB database files | `/home/mdiniz/data/mariadb` |
-| `srcs_wordpress_files` | WordPress application files | `/home/mdiniz/data/wordpress` |
+| `srcs_mariadb_data` | MariaDB database files | `/home/marcos/data/mariadb` |
+| `srcs_wordpress_files` | WordPress application files | `/home/marcos/data/wordpress` |
 
 These volumes persist across container restarts and `make down`. Data is only deleted when running `make fclean`, which removes the volumes and clears the host directories.
 
@@ -233,8 +233,8 @@ Secrets never appear in environment variables, image layers, or `docker inspect`
 The host data directories do not exist. Run:
 
 ```sh
-mkdir -p /home/mdiniz/data/mariadb
-mkdir -p /home/mdiniz/data/wordpress
+mkdir -p /home/marcos/data/mariadb
+mkdir -p /home/marcos/data/wordpress
 ```
 
 Or simply run `make fclean && make` — the Makefile creates these directories automatically.

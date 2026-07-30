@@ -1,5 +1,3 @@
-*This project has been created as part of the 42 curriculum by mdiniz.*
-
 # Inception
 
 ## Description
@@ -30,7 +28,7 @@ With `network: host`, the container shares the host's network stack directly, me
 
 **Docker Volumes vs Bind Mounts**
 
-A bind mount maps a specific path on the host filesystem directly into the container. This is simple but creates a tight coupling between the host and the container — the host path must exist and the container depends on its structure. Named Docker volumes are managed by Docker itself: Docker handles the storage location, permissions, and lifecycle. They are more portable, easier to back up, and work correctly across different environments. This project uses named volumes with a local driver configured to store data in `/home/mdiniz/data/` on the host.
+A bind mount maps a specific path on the host filesystem directly into the container. This is simple but creates a tight coupling between the host and the container — the host path must exist and the container depends on its structure. Named Docker volumes are managed by Docker itself: Docker handles the storage location, permissions, and lifecycle. They are more portable, easier to back up, and work correctly across different environments. This project uses named volumes with a local driver configured to store data in `/home/marcos/data/` on the host.
 
 ## Instructions
 
@@ -76,16 +74,16 @@ make re
 Add the following line to `/etc/hosts` on your machine:
 
 ```
-127.0.0.1    mdiniz.42.fr
+127.0.0.1    marcos.42.fr
 ```
 
 Then open your browser and navigate to:
 
 ```
-https://mdiniz.42.fr
+https://marcos.42.fr
 ```
 
-Accept the self-signed certificate warning. The WordPress site will load. The administration panel is available at `https://mdiniz.42.fr/wp-admin`.
+Accept the self-signed certificate warning. The WordPress site will load. The administration panel is available at `https://marcos.42.fr/wp-admin`.
 
 ## Resources
 

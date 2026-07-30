@@ -53,23 +53,23 @@ This removes all containers, images, volumes, and data. Use this only if you wan
 Make sure your `/etc/hosts` file contains this line:
 
 ```
-127.0.0.1    mdiniz.42.fr
+127.0.0.1    marcos.42.fr
 ```
 
 Then open your browser and go to:
 
 ```
-https://mdiniz.42.fr
+https://marcos.42.fr
 ```
 
-Your browser will show a security warning because the SSL certificate is self-signed. This is expected. Click **Advanced** and then **Proceed to mdiniz.42.fr** to continue.
+Your browser will show a security warning because the SSL certificate is self-signed. This is expected. Click **Advanced** and then **Proceed to marcos.42.fr** to continue.
 
 ### Administration panel
 
 The WordPress admin panel is available at:
 
 ```
-https://mdiniz.42.fr/wp-admin
+https://marcos.42.fr/wp-admin
 ```
 
 Log in with the administrator credentials stored in `secrets/credentials.txt`.
@@ -111,7 +111,7 @@ All three containers (`nginx`, `wordpress`, `mariadb`) should show status `Up`.
 ### Check NGINX is accepting HTTPS connections
 
 ```sh
-curl -k https://mdiniz.42.fr | head -5
+curl -k https://marcos.42.fr | head -5
 ```
 
 You should see the beginning of the WordPress HTML page.
@@ -119,10 +119,10 @@ You should see the beginning of the WordPress HTML page.
 ### Check that port 80 is not accessible (required by the project)
 
 ```sh
-curl http://mdiniz.42.fr
+curl http://marcos.42.fr
 ```
 
-This should fail with `Failed to connect to mdiniz.42.fr port 80`. If it connects, there is a configuration problem.
+This should fail with `Failed to connect to marcos.42.fr port 80`. If it connects, there is a configuration problem.
 
 ### Check PHP-FPM is running inside the WordPress container
 
